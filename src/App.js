@@ -31,7 +31,7 @@ class BooksApp extends React.Component {
         <Route
           path="/"
           exact
-          render={() => <Mainpage books={this.state.books} />}
+          render={() => <Mainpage books={this.state.books} updateBookLocation={this.updateBookLocation.bind(this)}/>}
         />
         <Route path="/Searchpage" exact render={() => <Searchpage />} />
       </div>
