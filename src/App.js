@@ -16,6 +16,9 @@ class BooksApp extends React.Component {
     BooksAPI.update(book,shelf)
     .then (response => {
       book.shelf = shelf;
+      BooksAPI.getAll().then((books) => {
+      this.setState({books})
+      })
     })
 
   };
@@ -31,7 +34,7 @@ class BooksApp extends React.Component {
         <Route
           path="/"
           exact
-          render={() => <Mainpage books={this.state.books} updateBookLocation={this.updateBookLocation.bind(this)}/>}
+          render={() => <Mainpage books={this.state.books} updateBookLocation={this.updateBookLocation}/>}
         />
         <Route path="/Searchpage" exact render={() => <Searchpage />} />
       </div>

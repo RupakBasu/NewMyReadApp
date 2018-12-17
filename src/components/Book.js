@@ -11,9 +11,10 @@ class Book extends React.Component {
 
     };
   }
-  handleChange(e){
+
+  handleChange =(e)=>{
     const newShelf = e.target.value;
-    this.props.updateBookLocation(this.props.book);
+    this.props.updateBookLocation(this.props.book, newShelf);
   }
 
   render() {
