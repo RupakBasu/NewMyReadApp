@@ -3,6 +3,7 @@ import React from 'react';
 import * as BooksAPI from "../../BooksAPI";
 
 import AddBookButton from '../BackToMainPage';
+import Book from "../Book";
 
 
 class Searchpage extends React.Component {
@@ -19,13 +20,13 @@ class Searchpage extends React.Component {
     this.setState({query:e.target.value});
   }
 
-  updateBooksBasedSearchBar = SearchBarQueryedBooks => {
-    const {query} = this.state;
-
-    if ( query ! == '' && this.props.book.title.indexOf (query) === -1){
-      return null
-    }
-  }
+  // updateBooksBasedSearchBar = SearchBarQueryedBooks => {
+  //   const {query} = this.state;
+  //
+  //   if ( query ! == '' && this.props.book.title.indexOf (query) === -1){
+  //     return null
+  //   }
+  // }
 
   render() {
     return(
@@ -44,6 +45,11 @@ class Searchpage extends React.Component {
             <input type="text" placeholder="Search by title or author"onChange={this.searchBarChange} />
 
           </div>
+        </div>
+        <div className="search-books-results">
+          <ol className="books-grid">
+            {this.props.books.map(book => <Book book={book} key={book.id} updateBookLocation={this.props.updateBookLocation} /> )}
+          </ol>
         </div>
       </div>
     );
