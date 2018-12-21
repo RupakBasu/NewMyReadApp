@@ -1,38 +1,51 @@
-import React from 'react';
+import React from "react";
 // import {getAll} from '../../BooksAPI';
 import * as BooksAPI from "../../BooksAPI";
 
-import AddBookButton from '../BackToMainPage';
+import AddBookButton from "../BackToMainPage";
 import Book from "../Book";
 
-
-class Searchpage extends React.Component {
-  componentDidMount() {
-    console.log(this);
-
-  }
+class Searchpage extends React.Component {  
   state = {
     books: [],
-    query:''
+    query: ""
   };
 
-  searchBarChange =(e)=>{
-    this.setState({query:e.target.value});
-  }
+  searchBarChange = e => {
+    const query = e.target.value;
+    this.setState({ [e.target.name]: query }, () => this.searchBooks(query));
+  };
 
-  updateBooksBasedSearchBar = SearchBarQueryedBooks => {
-    const {query} = this.state;
 
-    if ( query !== '' && this.props.book.indexOf(query) === -1){
-      return null
+  searchBooks = query => {
+    if (query === "") {
+      this.setState({ books: [] });
+    } else {
+      BooksAPI.search(query).then(res => {
+        if (!res.error) {
+          this.setState({
+            books: res
+          });
+        }
+      });
     }
-  }
+  };
+
+  // bookStatus = () => {
+  //   if (){
+  //
+  //
+  //
+  //   } else {
+  //
+  //   }
+  // }
 
   render() {
-    return(
+    return (
       <div className="search-books">
         <div className="search-books-bar">
-          <AddBookButton/>
+          <AddBookButton />
           <div className="search-books-input-wrapper">
             {/*
               NOTES: The search from BooksAPI is limited to a particular set of search terms.
@@ -42,13 +55,25 @@ class Searchpage extends React.Component {
               However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
               you don't find a specific author or title. Every search is limited by search terms.
             */}
-            <input type="text" placeholder="Search by title or author" onChange={this.searchBarChange} />
-
+            <input
+              type="text"
+              name="query"
+              placeholder="Search by title or author"
+              onChange={e => this.searchBarChange(e)}
+              value={this.state.query}
+            />
           </div>
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {this.props.books.map(book => <Book book={book} key={book.id} updateBookLocation={this.props.updateBookLocation} /> )}
+            {this.state.books.length > 0 &&
+              this.state.books.map(book => (
+                <Book
+                  book={book}
+                  key={book.id}
+                  updateBookLocation={this.props.updateBookLocation}
+                />
+              ))}
           </ol>
         </div>
       </div>
