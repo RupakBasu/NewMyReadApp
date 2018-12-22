@@ -39,7 +39,9 @@ class Searchpage extends React.Component {
     const {books}= this.props;
 
     const bookList = books.map(foundBooks => {
-      console.log(foundBooks)
+      console.log(foundBooks.title)
+      console.log(foundBooks.id)
+      console.log(foundBooks.shelf)
     })
     return (
       <div className="search-books">
