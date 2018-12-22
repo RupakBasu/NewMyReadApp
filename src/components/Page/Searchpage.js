@@ -5,7 +5,11 @@ import * as BooksAPI from "../../BooksAPI";
 import AddBookButton from "../BackToMainPage";
 import Book from "../Book";
 
-class Searchpage extends React.Component {  
+class Searchpage extends React.Component {
+  componentDidMount() {
+    console.log(this);
+  }
+
   state = {
     books: [],
     query: ""
@@ -31,17 +35,12 @@ class Searchpage extends React.Component {
     }
   };
 
-  // bookStatus = () => {
-  //   if (){
-  //
-  //
-  //
-  //   } else {
-  //
-  //   }
-  // }
-
   render() {
+    const {books}= this.props;
+
+    const bookList = books.map(foundBooks => {
+      console.log(foundBooks)
+    })
     return (
       <div className="search-books">
         <div className="search-books-bar">

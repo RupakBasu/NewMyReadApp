@@ -54,7 +54,7 @@ class Book extends React.Component {
         <div className="book-authors">
           {this.props.book.authors
             ? [...this.props.book.authors].join(", ")
-            : this.props.book.authors}
+            : 'No Authors'}
         </div>
       </div>
     );
