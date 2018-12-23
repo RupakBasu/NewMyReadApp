@@ -11,7 +11,7 @@ class Searchpage extends React.Component {
   }
 
   state = {
-    books: [],
+    booksInSearch: [],
     query: ""
   };
 
@@ -23,12 +23,12 @@ class Searchpage extends React.Component {
 
   searchBooks = query => {
     if (query === "") {
-      this.setState({ books: [] });
+      this.setState({ booksInSearch: [] });
     } else {
       BooksAPI.search(query).then(res => {
         if (!res.error) {
           this.setState({
-            books: res
+            booksInSearch: res
           });
         }
       });
@@ -39,10 +39,14 @@ class Searchpage extends React.Component {
     const {books}= this.props;
 
     const bookList = books.map(foundBooks => {
-      console.log(foundBooks.title)
-      console.log(foundBooks.id)
-      console.log(foundBooks.shelf)
+      if(foundBooks.shelf !== 'none' ){
+        // this.setState = searchBooks();
+      }
+      // console.log(foundBooks.title)
+      // console.log(foundBooks.id)
+      // console.log(foundBooks.shelf)
     })
+
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -67,8 +71,8 @@ class Searchpage extends React.Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {this.state.books.length > 0 &&
-              this.state.books.map(book => (
+            {this.state.booksInSearch.length > 0 &&
+              this.state.booksInSearch.map(book => (
                 <Book
                   book={book}
                   key={book.id}
