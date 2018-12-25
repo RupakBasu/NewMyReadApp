@@ -11,7 +11,7 @@ class Mainpage extends React.Component {
     const { books } = this.props;
     const { updateBookLocation } = this.props;
 
-    // Would like to compare this new array mainpagebookList with the one on the search page 
+    // Would like to compare this new array mainpagebookList with the one on the search page
     const mainpageBooklist = books.map(booksOnShelf => {
       console.log(booksOnShelf.title)
       console.log(booksOnShelf.id)

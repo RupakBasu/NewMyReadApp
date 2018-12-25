@@ -35,16 +35,66 @@ class Searchpage extends React.Component {
     }
   };
 
+  // searchBooks = (query) => {
+  //    BooksAPI.search(query).then(res => {
+  //      const searchedBooks = this.props.books.map(book => {
+  //        res.map(booksInSearch => {
+  //          if (book.id === booksInSearch.id) {
+  //            booksInSearch.shelf = book.shelf;
+  //            // and return all newBook objects to fill the searchedBooks array
+  //            // if (query === "") {
+  //            //   this.setState({ booksInSearch: [] });
+  //            // } else {
+  //            //   BooksAPI.search(query).then(res => {
+  //            //     if (!res.error) {
+  //            //       this.setState({
+  //            //         booksInSearch: res
+  //            //       });
+  //            //     }
+  //            //   });
+  //            // }
+  //          }
+  //        })
+  //      })
+  //    })
+  // }
+  // searchBooks = (query) => {
+  //    BooksAPI.search(query).then(res => {
+  //      const searchedBooks = this.props.books.map(oldBook => {
+  //        res.map(newBook => {
+  //          if (oldBook.id === newBook.id) {
+  //            newBook.shelf = oldBook.shelf;
+  //            // and return all newBook objects to fill the searchedBooks array
+  //            if (query === "") {
+  //              this.setState({ booksInSearch: [] });
+  //            } else {
+  //              BooksAPI.search(query).then(res => {
+  //                if (!res.error) {
+  //                  this.setState({
+  //                    booksInSearch: res
+  //                  });
+  //                }
+  //              });
+  //            }
+  //          }
+  //        })
+  //      })
+  //    })
+  // }
+
   render() {
     const {books}= this.props;
-
-    const bookList = books.map(foundBooks => {
-      if(foundBooks.shelf !== 'none' ){
-        // this.setState = searchBooks();
+    const bookList = this.props.books.map(foundBooks => {
+      if (this.props.books.id === foundBooks.id) {
+          foundBooks.shelf = this.props.books.shelf;
       }
-      // console.log(foundBooks.title)
-      // console.log(foundBooks.id)
-      // console.log(foundBooks.shelf)
+
+      console.log(booksOnShelf.title)
+      console.log(books.id)
+      console.log(books.shelf)
+      console.log(foundBooks.title)
+      console.log(foundBooks.id)
+      console.log(foundBooks.shelf)
     })
 
     return (
@@ -76,7 +126,8 @@ class Searchpage extends React.Component {
                 <Book
                   book={book}
                   key={book.id}
-                  updateBookLocation={this.props.updateBookLocation}
+                  // updateBookLocation={this.props.updateBookLocation}
+                  // updateSearchBookLocationShelf={this.updateSearchBookLocationShelf}
                 />
               ))}
           </ol>

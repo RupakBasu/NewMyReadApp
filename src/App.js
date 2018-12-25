@@ -20,8 +20,17 @@ class BooksApp extends React.Component {
       this.setState({books})
       })
     })
+  };
 
-  };  
+  updateSearchBookLocationShelf= (book, shelf) => {
+    BooksAPI.update(book,shelf)
+    .then (response => {
+      book.shelf = shelf;
+      BooksAPI.getAll().then((books) => {
+      this.setState({books})
+      })
+    })
+  };
 
   componentDidMount = () => {
     BooksAPI.getAll().then(books => {
@@ -39,7 +48,7 @@ class BooksApp extends React.Component {
         <Route
           path="/Searchpage"
           exact
-          render={() => <Searchpage books={this.state.books} updateBookLocation={this.updateBookLocation} />}
+          render={() => <Searchpage books={this.state.books} updateBookLocation={this.updateBookLocation} updateSearchBookLocationShelf={this.updateSearchBookLocationShelf} />}
         />
       </div>
     );
