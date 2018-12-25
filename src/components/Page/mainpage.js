@@ -22,7 +22,7 @@ class Mainpage extends React.Component {
       <div className="app">
         <div className="list-books">
           <Header />
-          <Bookcase books={books} updateBookLocation={updateBookLocation}/>
+          <Bookcase books={books} updateBookLocation={updateBookLocation} />
           <AddBookButton />
         </div>
       </div>

@@ -84,12 +84,13 @@ class Searchpage extends React.Component {
 
   render() {
     const {books}= this.props;
+
     const bookList = this.props.books.map(foundBooks => {
       if (this.props.books.id === foundBooks.id) {
           foundBooks.shelf = this.props.books.shelf;
       }
 
-      console.log(booksOnShelf.title)
+      console.log(books.title)
       console.log(books.id)
       console.log(books.shelf)
       console.log(foundBooks.title)
@@ -126,6 +127,7 @@ class Searchpage extends React.Component {
                 <Book
                   book={book}
                   key={book.id}
+                  shelf={book.shelf}
                   // updateBookLocation={this.props.updateBookLocation}
                   // updateSearchBookLocationShelf={this.updateSearchBookLocationShelf}
                 />
