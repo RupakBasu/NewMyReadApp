@@ -35,59 +35,14 @@ class Searchpage extends React.Component {
     }
   };
 
-  // searchBooks = (query) => {
-  //    BooksAPI.search(query).then(res => {
-  //      const searchedBooks = this.props.books.map(book => {
-  //        res.map(booksInSearch => {
-  //          if (book.id === booksInSearch.id) {
-  //            booksInSearch.shelf = book.shelf;
-  //            // and return all newBook objects to fill the searchedBooks array
-  //            // if (query === "") {
-  //            //   this.setState({ booksInSearch: [] });
-  //            // } else {
-  //            //   BooksAPI.search(query).then(res => {
-  //            //     if (!res.error) {
-  //            //       this.setState({
-  //            //         booksInSearch: res
-  //            //       });
-  //            //     }
-  //            //   });
-  //            // }
-  //          }
-  //        })
-  //      })
-  //    })
-  // }
-  // searchBooks = (query) => {
-  //    BooksAPI.search(query).then(res => {
-  //      const searchedBooks = this.props.books.map(oldBook => {
-  //        res.map(newBook => {
-  //          if (oldBook.id === newBook.id) {
-  //            newBook.shelf = oldBook.shelf;
-  //            // and return all newBook objects to fill the searchedBooks array
-  //            if (query === "") {
-  //              this.setState({ booksInSearch: [] });
-  //            } else {
-  //              BooksAPI.search(query).then(res => {
-  //                if (!res.error) {
-  //                  this.setState({
-  //                    booksInSearch: res
-  //                  });
-  //                }
-  //              });
-  //            }
-  //          }
-  //        })
-  //      })
-  //    })
-  // }
-
   render() {
     const {books}= this.props;
 
     const bookList = this.props.books.map(foundBooks => {
       if (this.props.books.id === foundBooks.id) {
           foundBooks.shelf = this.props.books.shelf;
+      } else {
+        foundBooks.shelf === 'none';
       }
 
       console.log(books.title)
@@ -122,13 +77,14 @@ class Searchpage extends React.Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
+
             {this.state.booksInSearch.length > 0 &&
               this.state.booksInSearch.map(book => (
                 <Book
                   book={book}
                   key={book.id}
                   shelf={book.shelf}
-                  // updateBookLocation={this.props.updateBookLocation}
+                  updateBookLocation={this.props.updateBookLocation}
                   // updateSearchBookLocationShelf={this.updateSearchBookLocationShelf}
                 />
               ))}
