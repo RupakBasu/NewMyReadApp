@@ -45,7 +45,7 @@ class Searchpage extends React.Component {
         foundBooks.shelf === 'none';
       }
 
-      console.log(books.title)
+      console.log(booksOnShelf.title)
       console.log(books.id)
       console.log(books.shelf)
       console.log(foundBooks.title)
@@ -85,7 +85,6 @@ class Searchpage extends React.Component {
                   key={book.id}
                   shelf={book.shelf}
                   updateBookLocation={this.props.updateBookLocation}
-                  // updateSearchBookLocationShelf={this.updateSearchBookLocationShelf}
                 />
               ))}
           </ol>
