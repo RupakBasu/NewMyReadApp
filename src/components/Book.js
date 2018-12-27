@@ -2,8 +2,8 @@ import React from "react";
 
 class Book extends React.Component {
   componentDidMount() {
-    console.log(this);
-    // the console.log helps us identify what props are passed.    
+    // console.log(this);
+    // the console.log helps us identify what props are passed.
   }
   constructor() {
     super();

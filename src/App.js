@@ -21,7 +21,10 @@ class BooksApp extends React.Component {
       })
     })
   };
-
+  // updateBookStates = (searchBooks) => {
+  //   return
+  //   searchBooks.map(books => BooksAPI.get(books.id));
+  // }
 
   componentDidMount = () => {
     BooksAPI.getAll().then(books => {
@@ -39,7 +42,7 @@ class BooksApp extends React.Component {
         <Route
           path="/Searchpage"
           exact
-          render={() => <Searchpage books={this.state.books} updateBookLocation={this.updateBookLocation} />}
+          render={() => <Searchpage books={this.state.books} updateBookLocation={this.updateBookLocation} updateBookStates={this.updateBookStates} />}
         />
       </div>
     );
