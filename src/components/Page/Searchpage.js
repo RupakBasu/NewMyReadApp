@@ -22,7 +22,7 @@ class Searchpage extends React.Component {
       // .then(response => response.json())
       .then(response => response.text())
       .then(text => console.log(text))
-      .then(books => this.setState({ booksInSearch: books.booksInSearch }));
+      // .then(books => this.setState({ booksInSearch: books.booksInSearch }));
   }
 
   searchBarChange = e => {
