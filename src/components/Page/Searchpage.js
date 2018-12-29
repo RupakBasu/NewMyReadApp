@@ -30,6 +30,7 @@ class Searchpage extends React.Component {
     this.setState({ [e.target.name]: query }, () => this.searchBooks(query));
   };
 
+
   searchBooks = query => {
     if (query === "") {
       this.setState({ booksInSearch: [] });
@@ -98,8 +99,8 @@ class Searchpage extends React.Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-          {console.log(this.props.books)}
-          {console.log(this.props.books===this.state.booksInSearch)}
+          // {console.log(this.props.books)}
+          // {console.log(this.state.booksInSearch)}
           {this.state.booksInSearch.length > 0 && this.state.booksInSearch.map(book => (
               <Book book={book} key={book.id} shelf={book.shelf}updateBookLocation={this.props.updateBookLocation}/> ))}
               {/*
