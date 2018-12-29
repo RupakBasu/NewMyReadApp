@@ -51,7 +51,7 @@ class Searchpage extends React.Component {
 
   render() {
 
-    // const {books}= this.props;
+    const {books}= this.props;
     //
     // const bookList = this.props.books.map(foundBooks => {
     //   if (this.props.books.id === foundBooks.id) {
@@ -98,6 +98,8 @@ class Searchpage extends React.Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
+          {console.log(this.props.books)}
+          {console.log(this.props.books===this.state.booksInSearch)}
           {this.state.booksInSearch.length > 0 && this.state.booksInSearch.map(book => (
               <Book book={book} key={book.id} shelf={book.shelf}updateBookLocation={this.props.updateBookLocation}/> ))}
               {/*
