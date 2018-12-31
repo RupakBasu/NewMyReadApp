@@ -20,8 +20,8 @@ class Searchpage extends React.Component {
   componentDidMount() {
     fetch(api, { headers: { 'Authorization': 'This is Authorization for my books/:id' }})
       // .then(response => response.json())
-      .then(response => response.text())
-      .then(text => console.log(text))
+      // .then(response => response.text())
+      // .then(text => console.log(text))
       // .then(books => this.setState({ booksInSearch: books.booksInSearch }));
   }
 
@@ -31,19 +31,54 @@ class Searchpage extends React.Component {
   };
 
 
+  // searchBooks = query => {
+  //   const {books}= this.props;
+  //   if (query === "") {
+  //     this.setState({ booksInSearch: [] });
+  //   } else {
+  //     {/* This is what makes all the books populate */}
+  //     BooksAPI.search(query).then(res => {
+  //       if (!res.error) {
+  //         this.setState({
+  //           booksInSearch: res
+  //         });
+  //       }
+  //     });
+  //   }
+  // };
+
   searchBooks = query => {
+    const {books}= this.props;
     if (query === "") {
       this.setState({ booksInSearch: [] });
+      // this.setState({ booksInSearch: books.booksInSearch });
     } else {
+      {/* This is what makes all the books populate */}
       BooksAPI.search(query).then(res => {
         if (!res.error) {
-          this.setState({
-            booksInSearch: res
-          });
+          Promise.all(this.updateBookStates(res))
+          .then(updatedBooks => {
+            console.log("Updated", updatedBooks)
+            this.setState({
+              booksInSearch: this.updateBookStates(updatedBooks)
+            });
+          })
         }
       });
     }
   };
+  // if (!res.error) {
+  //         Promise.all(this.updateBookStates(res))
+  //         .then(updatedBooks => {
+  //           console.log("Updated", updatedBooks)
+  //           this.setState({
+  //             booksInSearch: this.updateBookStates(updatedBooks)
+  //           });
+  //         })
+  //       }
+
+
+
 
   updateBookStates(searchBooks) {
     return
@@ -53,6 +88,7 @@ class Searchpage extends React.Component {
   render() {
 
     const {books}= this.props;
+
     //
     // const bookList = this.props.books.map(foundBooks => {
     //   if (this.props.books.id === foundBooks.id) {
@@ -99,8 +135,8 @@ class Searchpage extends React.Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-          // {console.log(this.props.books)}
-          // {console.log(this.state.booksInSearch)}
+          {console.log(this.props.books)}
+          {console.log(this.state.booksInSearch)}
           {this.state.booksInSearch.length > 0 && this.state.booksInSearch.map(book => (
               <Book book={book} key={book.id} shelf={book.shelf}updateBookLocation={this.props.updateBookLocation}/> ))}
               {/*
