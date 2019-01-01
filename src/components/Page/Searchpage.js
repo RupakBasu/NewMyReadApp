@@ -30,23 +30,6 @@ class Searchpage extends React.Component {
     this.setState({ [e.target.name]: query }, () => this.searchBooks(query));
   };
 
-
-  // searchBooks = query => {
-  //   const {books}= this.props;
-  //   if (query === "") {
-  //     this.setState({ booksInSearch: [] });
-  //   } else {
-  //     {/* This is what makes all the books populate */}
-  //     BooksAPI.search(query).then(res => {
-  //       if (!res.error) {
-  //         this.setState({
-  //           booksInSearch: res
-  //         });
-  //       }
-  //     });
-  //   }
-  // };
-
   searchBooks = query => {
     const {books}= this.props;
     if (query === "") {
@@ -56,74 +39,30 @@ class Searchpage extends React.Component {
       {/* This is what makes all the books populate */}
       BooksAPI.search(query).then(res => {
         if (!res.error) {
-          Promise.all(this.updateBookStates(res))
-          .then(updatedBooks => {
-            console.log("Updated", updatedBooks)
+          Promise.all(this.updateBookStates(res)).then(updatedBooks => {
+            console.log("Updated", updatedBooks);
             this.setState({
-              booksInSearch: this.updateBookStates(updatedBooks)
+              booksInSearch: updatedBooks
             });
-          })
+          });
         }
       });
     }
   };
-  // if (!res.error) {
-  //         Promise.all(this.updateBookStates(res))
-  //         .then(updatedBooks => {
-  //           console.log("Updated", updatedBooks)
-  //           this.setState({
-  //             booksInSearch: this.updateBookStates(updatedBooks)
-  //           });
-  //         })
-  //       }
-
-
-
 
   updateBookStates(searchBooks) {
-    return
-    searchBooks.map(book => BooksAPI.get(book.id));
+    return searchBooks.map(book => BooksAPI.get(book.id));
   }
 
   render() {
 
     const {books}= this.props;
 
-    //
-    // const bookList = this.props.books.map(foundBooks => {
-    //   if (this.props.books.id === foundBooks.id) {
-    //       foundBooks.shelf = this.props.books.shelf;
-    //     }
-    //   // } else {
-    //   //   foundBooks.shelf === 'none';
-    //   // }
-    //
-    //   console.log(books.title)
-    //   console.log(books.id)
-    //   console.log(books.shelf)
-    //   console.log(foundBooks.title)
-    //   console.log(foundBooks.id)
-    //   console.log(foundBooks.shelf)
-    // })
-
     return (
       <div className="search-books">
         <div className="search-books-bar">
           <AddBookButton />
-          <div className="search-books-input-wrapper">
-            {/*
-              NOTES: The search from BooksAPI is limited to a particular set of search terms.
-              You can find these search terms here:
-              https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
-
-              However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-              you don't find a specific author or title. Every search is limited by search terms.
-
-              {this.state.booksInSearch.length > 0 && this.state.booksInSearch.map(book => (
-                  <Book book={book} key={book.id} shelf={book.shelf}updateBookLocation={this.props.updateBookLocation}/> ))}
-
-                  {this.props.books.map(book => <Book book={book} key={book.id} updateBookLocation={this.props.updateBookLocation} /> )}
-            */}
+          <div className="search-books-input-wrapper">          
             <input
               type="text"
               name="query"

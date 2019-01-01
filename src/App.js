@@ -21,11 +21,6 @@ class BooksApp extends React.Component {
       })
     })
   };
-  // updateBookStates = (searchBooks) => {
-  //   return
-  //   searchBooks.map(books => BooksAPI.get(books.id));
-  // }
-
   componentDidMount = () => {
     BooksAPI.getAll().then(books => {
       this.setState({ books }, () => console.log(this.state.books));
