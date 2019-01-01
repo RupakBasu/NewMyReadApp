@@ -6,17 +6,17 @@ class AddBookButton extends React.Component {
   constructor(){
     super();
     this.state = {
-      toSearchpage : false,
+      toSearch : false,
     };
   }
   render() {
-    if (this.state.toSearchpage === true) {
-      return <Redirect to='/Searchpage' />
+    if (this.state.toSearch === true) {
+      return <Redirect to='/Search' />
     }
     return(
       <div>
         <div className="open-search">
-          <a onClick={() => this.setState({ toSearchpage : true })}>Add a book </a>
+          <a onClick={() => this.setState({ toSearch : true })}>Add a book </a>
         </div>
       </div>
     );

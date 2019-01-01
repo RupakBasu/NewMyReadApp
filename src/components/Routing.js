@@ -1,14 +1,14 @@
 import React from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import Searchpage from './Searchpage';
+import Search from './Search';
 
 class Routing extends React.Component {
   render() {
     return(
       <BrowserRouter>
         <Switch>
-          <Route path ='/' exact component={Searchpage}></Route>
-          <Route path ='/Searchpage' exact component={Searchpage}></Route>
+          <Route path ='/' exact component={Search}></Route>
+          <Route path ='/Search' exact component={Search}></Route>
         </Switch>
       </BrowserRouter>
     )

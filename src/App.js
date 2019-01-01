@@ -4,7 +4,7 @@ import "./App.css";
 
 import { Route } from "react-router-dom";
 import Mainpage from "./components/Page/mainpage";
-import Searchpage from "./components/Page/Searchpage";
+import Search from "./components/Page/Search";
 
 
 class BooksApp extends React.Component {
@@ -35,9 +35,9 @@ class BooksApp extends React.Component {
           render={() => <Mainpage books={this.state.books} updateBookLocation={this.updateBookLocation}/>}
         />
         <Route
-          path="/Searchpage"
+          path="/Search"
           exact
-          render={() => <Searchpage books={this.state.books} updateBookLocation={this.updateBookLocation} updateBookStates={this.updateBookStates} />}
+          render={() => <Search books={this.state.books} updateBookLocation={this.updateBookLocation} updateBookStates={this.updateBookStates} />}
         />
       </div>
     );
